@@ -9,14 +9,14 @@ export interface UseCardSpinReturn {
 }
 
 /**
- * Hook que gerencia a lógica de rotação e interações de um cartão giratório.
+ * Hook that manages the rotation logic and interactions of a spinning card.
  *
- * @param {RefObject<HTMLDivElement>} ref - Referência ao elemento do cartão.
- * @param {number} rotationSpeed - A velocidade de rotação do cartão em graus por segundo (default é 0).
- * @param {boolean} draggable - Define se o cartão pode ser arrastado (default é false).
- * @param {boolean} hoverToStop - Define se a rotação deve parar ao passar o mouse sobre o cartão (default é false).
- * @param {boolean} clickToFlip - Define se o cartão deve virar ao clicar (default é false).
- * @returns {UseCardSpinReturn} - Um objeto com informações sobre o estado do cartão e manipuladores de eventos.
+ * @param {RefObject<HTMLDivElement>} ref - Reference to the card element.
+ * @param {number} rotationSpeed - The rotation speed of the card in degrees per second (default is 0).
+ * @param {boolean} draggable - Determines if the card can be dragged (default is false).
+ * @param {boolean} hoverToStop - Determines if the rotation should stop when hovering over the card (default is false).
+ * @param {boolean} clickToFlip - Determines if the card should flip on click (default is false).
+ * @returns {UseCardSpinReturn} - An object containing information about the card's state and event handlers.
  */
 export const useCardSpin = (
   ref: RefObject<HTMLDivElement>,

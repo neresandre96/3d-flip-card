@@ -2,17 +2,17 @@ import React, { useRef, ReactNode } from "react";
 import { useCardSpin } from "./useCardSpin";
 
 /**
- * Propriedades do componente CardSpin.
+ * Properties of the CardSpin component.
  * 
  * @interface CardSpinProps
- * @property {string} className - A classe CSS a ser aplicada ao cartão.
- * @property {ReactNode} children - Os elementos filhos que serão renderizados dentro do cartão.
- * @property {string} height - A altura do cartão (pode usar unidades como '100px', '50%', etc.).
- * @property {string} width - A largura do cartão (pode usar unidades como '100px', '50%', etc.).
- * @property {number} [rotationSpeed=0] - A velocidade de rotação do cartão em graus por segundo.
- * @property {boolean} [draggable=false] - Define se o cartão pode ser arrastado.
- * @property {boolean} [hoverToStop=false] - Define se a rotação deve parar ao passar o mouse sobre o cartão.
- * @property {boolean} [clickToFlip=false] - Define se o cartão deve virar ao clicar.
+ * @property {string} className - The CSS class to be applied to the card.
+ * @property {ReactNode} children - The child elements that will be rendered inside the card.
+ * @property {string} height - The height of the card (can use units like '100px', '50%', etc.).
+ * @property {string} width - The width of the card (can use units like '100px', '50%', etc.).
+ * @property {number} [rotationSpeed=0] - The rotation speed of the card in degrees per second.
+ * @property {boolean} [draggable=false] - Determines if the card can be dragged.
+ * @property {boolean} [hoverToStop=false] - Determines if the rotation should stop when hovering over the card.
+ * @property {boolean} [clickToFlip=false] - Determines if the card should flip on click.
  */
 export interface CardSpinProps {
   className: string;
@@ -26,10 +26,10 @@ export interface CardSpinProps {
 }
 
 /**
- * Componente que representa um cartão giratório que pode ser arrastado ou clicado para virar.
+ * Component that represents a spinning card that can be dragged or clicked to flip.
  *
- * @param {CardSpinProps} props - As propriedades do componente.
- * @returns {JSX.Element} O elemento JSX que representa o cartão giratório.
+ * @param {CardSpinProps} props - The properties of the component.
+ * @returns {JSX.Element} The JSX element that represents the spinning card.
  */
 const CardSpin: React.FC<CardSpinProps> = ({
   className,

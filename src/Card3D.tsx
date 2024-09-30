@@ -3,18 +3,19 @@ import CardSpin from "./CardSpin";
 import ErrorBoundary from "./ErrorBoundary";
 
 /**
- * Propriedades do componente Card3D.
+ * Properties of the Card3D component.
  * 
  * @interface Card3DProps
- * @property {ReactNode[]} children - Os elementos filhos do cartão, deve conter exatamente dois elementos.
- * @property {string} height - A altura do cartão (pode usar unidades como '100px', '50%', etc.).
- * @property {string} width - A largura do cartão (pode usar unidades como '100px', '50%', etc.).
- * @property {number} thickness - A espessura do cartão em pixels.
- * @property {number} [rotationSpeed=0] - A velocidade de rotação do cartão em graus por segundo. Padrão é 0.
- * @property {boolean} [hoverToStop=false] - Define se a rotação deve parar ao passar o mouse sobre o cartão. Padrão é false.
- * @property {"dragToFlip" | "clickToFlip"} mode - O modo de interação para virar o cartão.
- * @property {string} leftColor - A cor do lado esquerdo do cartão.
- * @property {string} rightColor - A cor do lado direito do cartão.
+ * @property {ReactNode, ReactNode} children - Child elements of the card, must contain exactly two elements: back and front.
+ * @property {string} height - The height of the card (can use units like '100px', '50%', etc.).
+ * @property {string} width - The width of the card (can use units like '100px', '50%', etc.).
+ * @property {number} thickness - The thickness of the card in pixels.
+ * @property {number} [rotationSpeed=0] - The rotation speed of the card in degrees per second. Default is 0.
+ * @property {boolean} [hoverToStop=false] - Determines if the rotation should stop when hovering over the card. Default is false.
+ * @property {"dragToFlip" | "clickToFlip"} mode - The interaction mode for flipping the card.
+ * @property {string} leftColor - The color of the left side of the card.
+ * @property {string} rightColor - The color of the right side of the card.
+ * @property {string} borderColor - The color of the card edges. Default is 'white'.
  */
 export interface Card3DProps {
   children: [ReactNode, ReactNode]; 
@@ -24,17 +25,18 @@ export interface Card3DProps {
   rotationSpeed?: number;
   hoverToStop?: boolean;
   mode: "dragToFlip" | "clickToFlip"; 
-  leftColor: string; 
-  rightColor: string; 
+  leftColor?: string; 
+  rightColor?: string;
+  borderColor?: string;
 }
 
 /**
- * Componente que representa um cartão 3D interativo que pode ser girado.
+ * Component that represents an interactive 3D card that can be flipped.
  *
- * @param {Card3DProps} props - As propriedades do componente.
- * @returns {JSX.Element | null} O elemento JSX que representa o cartão ou null se a quantidade de filhos for diferente de 2.
+ * @param {Card3DProps} props - The properties of the component.
+ * @returns {JSX.Element | null} The JSX element that represents the card or null if the number of children is not equal to 2.
  *
- * @see Card3DProps - As propriedades do componente Card3D, que define a configuração e o comportamento do cartão.
+ * @see Card3DProps - The properties of the Card3D component, which define the configuration and behavior of the card.
  */
 const Card3D: React.FC<Card3DProps> = ({
   children,
@@ -46,12 +48,20 @@ const Card3D: React.FC<Card3DProps> = ({
   mode,
   leftColor,
   rightColor,
+  borderColor = "white"
 }: Card3DProps): JSX.Element | null => { 
 
   if (children.length !== 2) {
     console.warn("Card component expects exactly two children.");
     return null; 
   }
+
+  const [front, back] = children;
+
+  const borderStyle = {
+    colorLeft: leftColor || borderColor,
+    colorRight: rightColor || borderColor,
+  };
 
   const halfThickness = thickness / 2;
   const effectiveRotationSpeed = mode === "clickToFlip" ? 0 : rotationSpeed;
@@ -69,13 +79,13 @@ const Card3D: React.FC<Card3DProps> = ({
   const leftSideStyle = {
     width: `${thickness}px`,
     left: `-${halfThickness}px`,
-    backgroundColor: leftColor,
+    backgroundColor: borderStyle.colorLeft,
   };
 
   const rightSideStyle = {
     width: `${thickness}px`,
     right: `-${halfThickness}px`,
-    backgroundColor: rightColor,
+    backgroundColor: borderStyle.colorRight,
   };
 
   return (
@@ -91,11 +101,11 @@ const Card3D: React.FC<Card3DProps> = ({
           clickToFlip={mode === "clickToFlip"}
         >
           <div className="card-face card-front" style={frontStyle}>
-            {children[0]}
+            {front}
           </div>
 
           <div className="card-face card-back" style={backStyle}>
-            {children[1]}
+            {back}
           </div>
 
           <div className="card-side card-side-left" style={leftSideStyle}></div>
