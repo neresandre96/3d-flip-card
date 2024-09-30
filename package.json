@@ -1,7 +1,7 @@
 {
   "name": "card-3d",
   "version": "0.1.0",
-  "description": "Beautiful 3D card",
+  "description": "Beautiful rotational 3D card component for React",
   "author": "neresandre96",
   "license": "MIT",
   "repository": "neresandre96/card-3d",
@@ -63,7 +63,7 @@
       "require": "./dist/index.js",
       "import": "./dist/index.modern.js"
     },
-    "./dist/card-styles.css": "./dist/card-styles.css"
+    "./card-styles.css": "./dist/card-styles.css"
   },
   "sideEffects": false
 }

@@ -16,7 +16,7 @@ npm install --save card-3d
 import React, { Component } from 'react'
 
 import MyComponent from 'card-3d'
-import 'card-3d/dist/card-styles.css'
+import 'card-3d/card-styles.css'
 
 class Example extends Component {
   render() {
