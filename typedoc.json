@@ -1,0 +1,10 @@
+{
+    "out": "docs",
+    "entryPoints": ["./src/index.tsx"],
+    "exclude": ["**/*.spec.ts"],
+    "excludeExternals": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "theme": "default",
+    "tsconfig": "./tsconfig.json"
+}
