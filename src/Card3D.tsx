@@ -45,7 +45,7 @@ const Card3D: React.FC<Card3DProps> = ({
   thickness,
   rotationSpeed = 0,
   hoverToStop = false,
-  mode,
+  mode = "dragToFlip",
   leftColor,
   rightColor,
   borderColor = "white"

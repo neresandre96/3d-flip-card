@@ -12,10 +12,9 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs && npm run copy-css && npm run docs",
+    "build": "microbundle-crl --no-compress --format modern,cjs && npm run copy-css",
     "release": "standard-version && npm run build && npm publish",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "docs": "typedoc --out docs/v0.1 src",
     "copy-css": "xcopy /s /y src\\*.css dist\\"
   },
   "peerDependencies": {
@@ -50,7 +49,6 @@
     "react-dom": "^18.0.0",
     "react-scripts": "^5.0.1",
     "standard-version": "^9.5.0",
-    "typedoc": "^0.26.7",
     "typescript": "^4.9.5"
   },
   "files": [

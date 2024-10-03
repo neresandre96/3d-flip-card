@@ -29,7 +29,7 @@ export const useCardSpin = (
   const [rotation, setRotation] = useState(0);
   const [dragging, setDragging] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
-
+  const [resetRotation, setResetRotation] = useState(false);
   const dragStartData = useRef({
     dragStartRotation: 0,
     dragStartClientX: 0,
@@ -48,14 +48,65 @@ export const useCardSpin = (
     animateRotation();
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [isHovered, dragging, rotationSpeed, hoverToStop]);
+  }, [isHovered, dragging, rotationSpeed, hoverToStop]);  
+
+  useEffect(() => {
+    if (ref.current && !resetRotation) {
+      ref.current.style.transform = `rotateY(${rotation}deg)`;
+      if (!dragging && ref.current.style.transition === 'none' && rotation !== 0) {
+        ref.current.style.transition = 'transform 0.6s ease';
+      }
+    }
+  }, [rotation]);
 
   useEffect(() => {
     if (ref.current) {
-      const flipRotation = isFlipped ? 180 : 0;
-      ref.current.style.transform = `rotateY(${rotation + flipRotation}deg)`;
+      if (rotation !== 0 && resetRotation) {
+        const closestMultipleOf360 = Math.round(rotation / 360) * 360;
+        ref.current.style.transform = `rotateY(${closestMultipleOf360}deg)`;
+
+        setTimeout(() => {
+          if (ref.current) {
+            ref.current.style.transition = 'none';
+            ref.current.style.transform = 'rotateY(0deg)';
+            setRotation(0);
+            setResetRotation(false); 
+          }
+        }, 600); 
+      } 
+    } 
+  }); 
+
+  useEffect(() => {
+    if (ref.current && !resetRotation) {
+      console.log("Mode changed");
+      setResetRotation(true);
     }
-  }, [rotation, isFlipped, ref]);
+
+  }, [draggable]);
+
+  const handleFlip = useCallback(() => {
+    setRotation((prevRotation) => {
+      let newRotation = prevRotation;
+  
+      if (prevRotation === 0) {
+        newRotation = 180;
+        setIsFlipped(false);
+      } else if (prevRotation === 180 && !isFlipped) {
+        newRotation = 360;
+        setIsFlipped(true);
+      } else if (prevRotation === 360) {
+        newRotation = 180;
+        setIsFlipped(true);
+        console.log('Backing to 180');
+      } else if (prevRotation === 180 && isFlipped) {
+        newRotation = 0;
+        setIsFlipped(false);
+      }
+      
+      return newRotation;
+    });
+  }, [isFlipped]);
 
   const handlePointerDown = useCallback(
     (event: React.PointerEvent<HTMLDivElement>) => {
@@ -99,9 +150,9 @@ export const useCardSpin = (
 
   const handleClick = useCallback(() => {
     if (!dragging) {
-      setIsFlipped((prev) => !prev);
+      handleFlip(); 
     }
-  }, [dragging]);
+  }, [dragging, handleFlip]);
 
   useEffect(() => {
     const cardElement = ref.current;
@@ -135,4 +186,4 @@ export const useCardSpin = (
     handlePointerMove,
     handlePointerUp,
   };
-};
+}; 

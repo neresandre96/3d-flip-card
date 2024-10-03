@@ -37,9 +37,14 @@ class Example extends Component {
   }
 }
 ```
+
+## Demo
+
+[Demo](https://neresandre96.github.io/card-3d/)
+
 ## Props
 
-The Card component accepts the following props:
+The Card component has the following customizable props:
 
 | Prop            | Type                                   | Description                                                                                      |
 |-----------------|----------------------------------------|--------------------------------------------------------------------------------------------------|
@@ -53,30 +58,10 @@ The Card component accepts the following props:
 | `leftColor`     | `string`                              | The color of the left side of the card.                                                        |
 | `rightColor`    | `string`                              | The color of the right side of the card.                                                       |
 
-## Interaction Mode
+## Documentation
 
-You can change the interaction mode to either clickToFlip or dragToFlip:
-
-  clickToFlip: The card flips when clicked.
-  dragToFlip: Drag controls the rotation axis.
-
-## Flip Animation
-
-The card flips with a smooth animation when mode is dragToFlip. You can adjust the rotation speed using the rotationSpeed prop.
-
-## Hover to Stop
-
-Control the hover behavior when mode is dragToFlip and has flip animation:
-
-  hoverToStop={true}: Stops rotation when hovering over the card.
-  hoverToStop={false}: The card continues to rotate while hovered.
-
-## Color Properties
-
-Customize the card border colors:
-
-  leftColor="#ff5733"   // Custom left color
-  rightColor="#33c1ff"  // Custom right color
+The Card component is a React component that renders a 3D card with customizable properties. It uses CSS3D transformations to create a 3D effect.
+To see full documentation, visit [documentation](https://neresandre96.github.io/card-3d/).
 
 ## Observations
 

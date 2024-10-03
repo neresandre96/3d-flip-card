@@ -37,7 +37,7 @@ const CardSpin: React.FC<CardSpinProps> = ({
   height,
   width,
   rotationSpeed = 0,
-  draggable = false,
+  draggable = true,
   hoverToStop = false,
   clickToFlip = false,
   ...props
@@ -52,8 +52,10 @@ const CardSpin: React.FC<CardSpinProps> = ({
   } = useCardSpin(cardRef, rotationSpeed, draggable, hoverToStop, clickToFlip);
 
   const style = {
-    width,
-    height,
+    minWidth: width,
+    maxWidth: width,
+    minHeight: height,
+    maxHeight: height,
     cursor: draggable ? (dragging ? "grabbing" : "grab") : "pointer",
     userSelect: "none" as const,
     willChange: "transform" as const,

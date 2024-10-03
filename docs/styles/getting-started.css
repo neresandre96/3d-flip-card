@@ -1,0 +1,57 @@
+
+
+h1 {
+    
+    text-transform: uppercase;
+}
+
+h2 {
+    padding: 5px;
+    height: 50px;
+    justify-content: center;
+}
+
+.getting-started {
+    font: 1.5em sans-serif;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px 0;
+}
+
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+
+.bash {
+    display: flex;
+    width: 238.66px;
+    height: 17px;
+    margin: 0;
+    padding: 0;
+}
+
+span {
+    margin: 0;
+    padding: 0;
+}
+
+
+.pre {
+    display: flex;
+    align-items: center;
+    justify-self: center;    
+    padding: 15px 15px;
+    margin: 35px;
+    min-height: 45px;
+
+}
+
+
